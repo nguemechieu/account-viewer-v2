@@ -1,4 +1,4 @@
-FROM ubuntu:20.04 as build
+FROM ubuntu:latest as build
 
 LABEL maintainer="SDF Ops Team <ops@stellar.org>"
 
@@ -18,7 +18,7 @@ COPY . /app/
 RUN yarn install
 RUN yarn build
 
-FROM nginx:1.17
+FROM nginx:latest
 
 COPY --from=build /app/build/ /usr/share/nginx/html/
 COPY --from=build /app/nginx.conf /etc/nginx/conf.d/default.conf
